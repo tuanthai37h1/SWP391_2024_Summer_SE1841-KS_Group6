@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dal.TourDB;
+import dal.ProfileDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Tour;
+import model.Profiles;
 
 /**
  *
  * @author tuanj
  */
-public class Main_Tour extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class Main_Tour extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Main_Tour</title>");
+            out.println("<title>Servlet ProfileServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Main_Tour at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProfileServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,8 +58,21 @@ public class Main_Tour extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("main", new TourDB().getList());
-        request.getRequestDispatcher("Main.jsp").forward(request, response);
+        ProfileDAO pDao = new ProfileDAO();
+        ArrayList<Profiles> pList = pDao.getListProfile();
+
+        if (request.getParameter("mod") != null && request.getParameter("mod").equals("1")) {
+            String idStr = request.getParameter("id");
+            int id = Integer.parseInt(idStr);
+
+            Profiles profile = pDao.getProfileById(id);
+            request.setAttribute("p", profile);
+            request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+            return;
+        }
+
+        request.setAttribute("ListProfile", pList);
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
     /**
@@ -73,16 +86,21 @@ public class Main_Tour extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String key = request.getParameter("searchT");
-        TourDB tdao = new TourDB();
-        ArrayList<Tour> list = new ArrayList<>();
-        for (Tour t : tdao.getList()) {
-            if (t.getTourname().toLowerCase().trim().contains(key.toLowerCase())) {
-                list.add(t);
-            }
+        int profileId = Integer.parseInt(request.getParameter("profileId"));
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String address = request.getParameter("address");
+        String phoneNumber = request.getParameter("phoneNumber");
+        ProfileDAO pDao = new ProfileDAO();
+
+        if (request.getParameter("update") != null) {
+            String id = request.getParameter("id");
+            Profiles p = new Profiles(profileId, userId, firstName, lastName, address, phoneNumber);
+            pDao.update(p);
         }
-        request.setAttribute("main", list);
-        request.getRequestDispatcher("Main.jsp").forward(request, response);
+
+        response.sendRedirect("profile");
     }
 
     /**

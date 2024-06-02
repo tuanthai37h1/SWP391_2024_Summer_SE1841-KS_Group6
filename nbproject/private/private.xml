@@ -3,7 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/src/java/dal/ProfileDAO.java</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/src/java/model/Profiles.java</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/src/java/dal/DBContext.java</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/web/editProfile.jsp</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/web/createTour.jsp</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/src/java/dal/TourDB.java</file>
             <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/web/Main.jsp</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/src/java/controller/Main_Tour.java</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/src/java/controller/ProfileServlet.java</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/web/tours.jsp</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/web/profile.jsp</file>
+            <file>file:/E:/PRJSP2024-SE1817/TEST_TRAVEL/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

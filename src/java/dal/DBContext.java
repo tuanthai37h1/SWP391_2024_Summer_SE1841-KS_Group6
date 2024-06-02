@@ -5,8 +5,6 @@ package dal;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,21 +21,25 @@ public class DBContext {
             String username = "sa";
             String password = "12345";
             String url = "jdbc:sqlserver://ATUANHU\\atuanhu:1433;databaseName=Travel3;encrypt=true;trustServerCertificate=true;useUnicode=true;characterEncoding=UTF-8;";
-            
+
             //Truoức khi thi phải thêm vào
-            
-            
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
-            
+
             // mấy cái này import được
         }
     }
+
+   
+
     public static void main(String[] args) {
-        new DBContext();
+        DBContext c = new DBContext();
+        System.out.println(c.connection);
     }
-    
+
+   
+
 }

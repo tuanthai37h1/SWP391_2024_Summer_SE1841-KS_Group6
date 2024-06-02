@@ -32,6 +32,10 @@
         <servlet-name>updateTour</servlet-name>
         <servlet-class>controller.updateTour</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>controller.ProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>updateTour</servlet-name>
         <url-pattern>/updateTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileServlet</servlet-name>
+        <url-pattern>/profile</url-pattern>
     </servlet-mapping>
 </web-app>

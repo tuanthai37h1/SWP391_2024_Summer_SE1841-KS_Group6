@@ -90,6 +90,42 @@
             nav ul li a:hover {
                 color: #d1e0ff;
             }
+
+            /* Additional CSS for the search form */
+            .search-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+            .search-container form {
+                display: inline-block;
+                position: relative;
+                margin: 0 auto;
+            }
+            .search-container input[type="text"] {
+                width: 300px;
+                padding: 10px 15px;
+                border: 1px solid #ccc;
+                border-radius: 25px 0 0 25px;
+                font-size: 16px;
+                outline: none;
+                transition: border-color 0.2s;
+            }
+            .search-container input[type="text"]:focus {
+                border-color: #007BFF;
+            }
+            .search-container input[type="submit"] {
+                padding: 10px 20px;
+                border: none;
+                background-color: #007BFF;
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 0 25px 25px 0;
+                transition: background-color 0.2s;
+            }
+            .search-container input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
         </style>
         <script>
             function toggleDetails(event) {
@@ -122,16 +158,10 @@
             <section id="featured-tours">
                 <h2>Featured Tours</h2>
 
-                <div style="text-align: center; margin-top: 20px;">
-                    <form action="search" method="GET">
-                        <label for="region">Chọn khu vực:</label>
-                        <select id="region" name="region">
-                            <option value="">--Chọn khu vực--</option>
-                            <option value="ASIA">ASIA</option>
-                            <option value="EURO">EURO</option>
-                            <option value="AMERICA">AMERICA</option>
-                        </select>
-                        <button type="submit">Tìm kiếm</button>
+                <div class="search-container">
+                    <form action="main" method="post">
+                        <input name="searchT" type="text" placeholder="Enter tour name">
+                        <input type="submit" value="Search">
                     </form>
                 </div>
                 <div class="tour-list">
