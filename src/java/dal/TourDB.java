@@ -15,6 +15,23 @@ import java.util.ArrayList;
  */
 public class TourDB extends DBContext {
 
+    public boolean isTourIdExists(int id) {
+        String query = "SELECT COUNT(*) FROM Tour WHERE id = ?";
+        try (
+                
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
     public ArrayList<Tour> getList() {
         ArrayList<Tour> list = new ArrayList<>();
         try {

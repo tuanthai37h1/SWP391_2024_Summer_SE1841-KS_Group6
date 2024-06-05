@@ -58,8 +58,12 @@ public class updateTour extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("sid");
+        int sid  = Integer.parseInt(id);
+        
+        
+       
         if (id != null && !id.trim().isEmpty()) {
-            int sid = Integer.parseInt(id);
+            
             Tour tour = new TourDB().selectTour(sid);
             request.setAttribute("update", tour);
             request.getRequestDispatcher("update.jsp").forward(request, response);

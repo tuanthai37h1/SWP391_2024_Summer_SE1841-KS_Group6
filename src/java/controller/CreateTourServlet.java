@@ -86,6 +86,13 @@ public class CreateTourServlet extends HttpServlet {
         // Ví dụ lưu thông tin vào cơ sở dữ liệu
         TourDB tourDAO = new TourDB(); // TourDAO là class quản lý truy vấn đến cơ sở dữ liệu
         
+        if (tourDAO.isTourIdExists(id)) {
+            // If the ID already exists, set an error message and forward to the error page
+            request.setAttribute("error", "ID đã bị trùng, vui lòng nhập ID khác.");
+            request.getRequestDispatcher("createTour.jsp").forward(request, response);
+            return;
+        }
+        
         Tour tour = new Tour( id,tourName, description, location, price, startDate, endDate, imagePart);
         boolean success = tourDAO.addTour(tour);
         
@@ -96,7 +103,7 @@ public class CreateTourServlet extends HttpServlet {
         } else {
             // Nếu không thành công, chuyển hướng đến trang lỗi hoặc hiển thị thông báo lỗi
             request.setAttribute("e", "nhập sai rồi nhập lại đi!");
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("createTour.jsp");
         }
     }
 
